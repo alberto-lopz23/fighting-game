@@ -10,15 +10,19 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
   )
 }
 
-function determineWinner({ player, enemy, timerId }) {
+function determineWinner({ player, enemy, timerId, }) {
   clearTimeout(timerId)
   document.querySelector('#displayText').style.display = 'flex'
+  document.querySelector('#buttonRestart').style.display = 'flex'
   if (player.health === enemy.health) {
     document.querySelector('#displayText').innerHTML = 'Tie'
+    document.querySelector('button').innerHTML = 'Restart'
   } else if (player.health > enemy.health) {
     document.querySelector('#displayText').innerHTML = 'Player 1 Wins'
+    document.querySelector('button').innerHTML = 'Restart'
   } else if (player.health < enemy.health) {
     document.querySelector('#displayText').innerHTML = 'Player 2 Wins'
+    document.querySelector('button').innerHTML = 'Restart'
   }
 }
 
@@ -35,3 +39,9 @@ function decreaseTimer() {
     determineWinner({ player, enemy, timerId })
   }
 }
+
+
+const Restart = document.querySelector('button')
+Restart.addEventListener('click', () => {
+  location.reload()
+})
